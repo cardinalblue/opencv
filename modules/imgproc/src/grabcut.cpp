@@ -559,7 +559,7 @@ void cv::grabCut( InputArray _img, InputOutputArray _mask, Rect rect,
     if( mode == GC_EVAL )
         checkMask( img, mask );
 
-    const double gamma = 50;
+    const double gamma = 250;
     const double lambda = 9*gamma;
     const double beta = calcBeta( img );
 
