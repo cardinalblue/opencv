@@ -265,7 +265,7 @@ static double calcBeta( const Mat& img )
     else
         beta = 1.f / (2 * beta/(4*img.cols*img.rows - 3*img.cols - 3*img.rows + 2) );
 
-    return 0.0;
+    return beta;
 }
 
 /*
@@ -559,7 +559,7 @@ void cv::grabCut( InputArray _img, InputOutputArray _mask, Rect rect,
     if( mode == GC_EVAL )
         checkMask( img, mask );
 
-    const double gamma = 250;
+    const double gamma = 25;
     const double lambda = 9*gamma;
     const double beta = calcBeta( img );
 
