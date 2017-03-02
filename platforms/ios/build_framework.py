@@ -132,6 +132,9 @@ class Builder:
             "-DBUILD_SHARED_LIBS=ON",
             "-DCMAKE_MACOSX_BUNDLE=ON",
             "-DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED=NO",
+            "-BUILD_opencv_imgproc=ON",
+            "-BUILD_opencv_core=ON",
+            "-BUILD_opencv_world=OFF"
         ] if self.dynamic else [])
 
         if len(self.exclude) > 0:
@@ -276,6 +279,9 @@ if __name__ == "__main__":
     parser.add_argument('--disable-bitcode', default=False, dest='bitcodedisabled', action='store_true', help='disable bitcode (enabled by default)')
     args = parser.parse_args()
 
+    # manually add this
+    args.without += ["flann", "ml", "photo", "video", "imgcodecs", "shape", "videoio", "highgui", "objdetect", "features2d", "calib3d" ,"stitching", "videostab", "world"]
+    
     b = iOSBuilder(args.opencv, args.contrib, args.dynamic, args.bitcodedisabled, args.without,
         [
             (["armv7", "arm64"], "iPhoneOS"),
