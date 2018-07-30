@@ -36,9 +36,15 @@ understanding how to manipulate the images on a pixel level.
 
 -   @subpage tutorial_mat_operations
 
+    *Languages:* C++, Java, Python
+
+    *Compatibility:* \> OpenCV 2.0
+
     Reading/writing images from file, accessing pixels, primitive operations, visualizing images.
 
 -   @subpage tutorial_adding_images
+
+    *Languages:* C++, Java, Python
 
     *Compatibility:* \> OpenCV 2.0
 
@@ -48,6 +54,8 @@ understanding how to manipulate the images on a pixel level.
 
 -   @subpage tutorial_basic_linear_transform
 
+    *Languages:* C++, Java, Python
+
     *Compatibility:* \> OpenCV 2.0
 
     *Author:* Ana Huamán
@@ -55,6 +63,8 @@ understanding how to manipulate the images on a pixel level.
     We will learn how to change our image appearance!
 
 -   @subpage tutorial_basic_geometric_drawing
+
+    *Languages:* C++, Java, Python
 
     *Compatibility:* \> OpenCV 2.0
 
@@ -71,6 +81,8 @@ understanding how to manipulate the images on a pixel level.
     We will draw some *fancy-looking* stuff using OpenCV!
 
 -   @subpage tutorial_discrete_fourier_transform
+
+    *Languages:* C++, Java, Python
 
     *Compatibility:* \> OpenCV 2.0
 
