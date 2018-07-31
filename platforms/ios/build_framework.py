@@ -267,23 +267,79 @@ class iOSBuilder(Builder):
         ]
         return args
 
+def getExcludingModulesByIncludedOnes(included):
+    main_modules = ["core",
+                    "imgproc",
+                    "imgcodecs",
+                    "videoio",
+                    "highgui",
+                    "video",
+                    "calib3d",
+                    "features2d",
+                    "objdetect",
+                    "dnn",
+                    "ml",
+                    "flann",
+                    "photo",
+                    "stitching",
+                    "cudaarithm",
+                    "cudabgsegm",
+                    "cudacodec",
+                    "cudafeatures2d",
+                    "cudafilters",
+                    "cudaimgproc",
+                    "cudalegacy",
+                    "cudaobjdetect",
+                    "cudaoptflow",
+                    "cudastereo",
+                    "cudawarping",
+                    "cudev",
+                    "shape",
+                    "superres",
+                    "videostab",
+                    "viz"]
 
+    extra_modules = ["aruco",
+                     "bgsegm",
+                     "bioinspired",
+                     "ccalib",
+                     "cnn_3dobj",
+                     "cvv",
+                     "datasets",
+                     "dnn_modern",
+                     "dpm",
+                     "face",
+                     "freetype",
+                     "fuzzy",
+                     "hdf",
+                     "img_hash",
+                     "line_descriptor",
+                     "matlab",
+                     "optflow",
+                     "phase_unwrapping",
+                     "plot",
+                     "reg",
+                     "rgbd",
+                     "saliency",
+                     "sfm",
+                     "stereo",
+                     "structured_light",
+                     "surface_matching",
+                     "text",
+                     "tracking",
+                     "xfeatures2d",
+                     "ximgproc",
+                     "xobjdetect",
+                     "xphoto"]
+    
+    excluded_modules = main_modules + extra_modules
+    for module in included:
+        excluded_modules.remove(module)
+    return excluded_modules
+    
 if __name__ == "__main__":
 
-    without = ["calib3d",
-               "features2d",
-               "flann",
-               "highgui",
-               "imgcodecs",
-               "ml",
-               "objdetect",
-               "photo",
-               "shape",
-               "stitching",
-               "video",
-               "videoio",
-               "videostab",
-               "world"]
+    without = getExcludingModulesByIncludedOnes(["core", "imgproc"])
 
     folder = os.path.abspath(os.path.join(os.path.dirname(sys.argv[0]), "../.."))
     parser = argparse.ArgumentParser(description='The script builds OpenCV.framework for iOS.')
