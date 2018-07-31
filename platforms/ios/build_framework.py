@@ -132,9 +132,6 @@ class Builder:
             "-DBUILD_SHARED_LIBS=ON",
             "-DCMAKE_MACOSX_BUNDLE=ON",
             "-DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED=NO",
-            "-BUILD_opencv_imgproc=ON",
-            "-BUILD_opencv_core=ON",
-            "-BUILD_opencv_world=OFF"
         ] if self.dynamic else [])
 
         if len(self.exclude) > 0:
@@ -272,18 +269,31 @@ class iOSBuilder(Builder):
 
 
 if __name__ == "__main__":
+
+    without = ["calib3d",
+               "features2d",
+               "flann",
+               "highgui",
+               "imgcodecs",
+               "ml",
+               "objdetect",
+               "photo",
+               "shape",
+               "stitching",
+               "video",
+               "videoio",
+               "videostab",
+               "world"]
+
     folder = os.path.abspath(os.path.join(os.path.dirname(sys.argv[0]), "../.."))
     parser = argparse.ArgumentParser(description='The script builds OpenCV.framework for iOS.')
     parser.add_argument('out', metavar='OUTDIR', help='folder to put built framework')
     parser.add_argument('--opencv', metavar='DIR', default=folder, help='folder with opencv repository (default is "../.." relative to script location)')
     parser.add_argument('--contrib', metavar='DIR', default=None, help='folder with opencv_contrib repository (default is "None" - build only main framework)')
-    parser.add_argument('--without', metavar='MODULE', default=[], action='append', help='OpenCV modules to exclude from the framework')
+    parser.add_argument('--without', metavar='MODULE', default=without, action='append', help='OpenCV modules to exclude from the framework')
     parser.add_argument('--dynamic', default=False, action='store_true', help='build dynamic framework (default is "False" - builds static framework)')
     parser.add_argument('--disable-bitcode', default=False, dest='bitcodedisabled', action='store_true', help='disable bitcode (enabled by default)')
     args = parser.parse_args()
-
-    # manually add this
-    args.without += ["flann", "ml", "photo", "video", "imgcodecs", "shape", "videoio", "highgui", "objdetect", "features2d", "calib3d" ,"stitching", "videostab", "world"]
     
     b = iOSBuilder(args.opencv, args.contrib, args.dynamic, args.bitcodedisabled, args.without,
         [
