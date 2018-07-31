@@ -9,4 +9,5 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '8.0'
   s.source       = { :http => "https://s3-us-west-1.amazonaws.com/cardinalblue/cocoapods/OpenCV%40cb-0.0.1.zip" }
   s.vendored_frameworks = "opencv2.framework"
+  s.static_framework = true
 end
